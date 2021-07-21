@@ -1,0 +1,9 @@
+node('slave') {
+  stage ('build latest image') {
+    openshift.withCluster() {
+        openshift.withProject() {
+             openshiftBuild(buildConfig: 'wildfly-app', showBuildLogs: 'true')
+        }    
+    }     
+  }
+}
