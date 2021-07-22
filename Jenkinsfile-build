@@ -8,11 +8,7 @@ node('slave') {
   }
  
   stage ('Tag Image to DEV') {
-     openshift.withCluster() {
-        openshift.withProject() {
-            openshift.tag(namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
-		 destTag: 'latest', destinationNamespace: 'wildfly-dev')
-        }
-     }  
+            openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
+		 destTag: 'latest', destinationNamespace: 'wildfly-dev'       
   }  
 }
