@@ -1,0 +1,16 @@
+node('agent') {
+#  stage('tag latest to old image') {
+#    openshift.withCluster() {
+#        openshift.withProject() {
+#             openshift.tag("wildfly-app:latest", "wildfly-app:old") 
+#        }
+#   }
+#  }
+  stage ('deploy image from cicd to dev') {
+    openshift.withCluster() {
+        openshift.withProject(wildfly-dev) {  
+            openshiftDeploy(deploymentConfig: 'wildfly-app')
+        }
+    }    
+  }
+}
