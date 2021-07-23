@@ -8,7 +8,7 @@ node('slave') {
     }    
   }
   stage ('Tag Image to TEST') {
-            openshift.tag namespace: 'wildfly-dev', srcStream: 'wildfly-app', srcTag: 'latest' destStream: 'wildfly-app',
+            openshiftTag namespace: 'wildfly-dev', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
                  destTag: 'latest', destinationNamespace: 'wildfly-test'    
   }
   
