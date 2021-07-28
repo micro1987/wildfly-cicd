@@ -1,4 +1,4 @@
-node('agent') {
+node('slave') {
   
   stage ('approval') {
     input "Promover a Production?"

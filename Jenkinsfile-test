@@ -1,4 +1,4 @@
-node('agent') {
+node('slave') {
   stage ('deploy image to TEST') {
       openshift.withCluster() {
          openshift.withProject() {
