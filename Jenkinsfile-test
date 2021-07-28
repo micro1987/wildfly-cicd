@@ -2,7 +2,7 @@ node('slave') {
   stage ('deploy image to TEST') {
       openshift.withCluster() {
          openshift.withProject() {
-            openshiftDeploy (namespace: 'widlfly-test', deploymentConfig: 'wildfly-app', verbose: 'true')
+            openshiftDeploy (namespace: 'wildfly-test', deploymentConfig: 'wildfly-app', verbose: 'true')
          }
       }
   }
