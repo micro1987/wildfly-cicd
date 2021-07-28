@@ -1,25 +1,19 @@
 node('agent') {
-  stage('tag latest to old image') {
-    openshift.withCluster() {
-        openshift.withProject() {
-             openshift.tag("wildfly-app:latest", "wildfly-app:old") 
-        }
-   }
+  stage ('deploy image to TEST') {
+      openshift.withCluster() {
+         openshift.withProject() {
+            openshiftDeploy (namespace: 'widlfly-test', deploymentConfig: 'wildfly-app', verbose: 'true')
+         }
+      }
   }
-  stage ('build latest image') {
-    openshift.withCluster() {
-        openshift.withProject() {
-             openshiftBuild(buildConfig: 'wildfly-app', showBuildLogs: 'true')
-    }    }     
+  
+  stage ('Verify TEST deployment') {
+     openshiftVerifyDeployment namespace: 'wildfly-test', depCfg: 'wildfly-app', replicaCount: '1', verbose: 'true'
   }
-  stage ('approval') {
-    input "Promover a Production?"
+
+  stage ('Tag image to PROD') {
+     openshiftTag namespace: 'wildfly-test', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
+                 destTag: 'latest', destinationNamespace: 'wildfly-prod'
   }
-  stage ('deploy image to production environment') {
-    openshift.withCluster() {
-        openshift.withProject() {  
-            openshiftDeploy(deploymentConfig: 'wildfly-app')
-        }
-    }    
-  }
+
 }

@@ -1,12 +1,17 @@
 node('slave') {
   
-  stage ('deploy image to dev') {
+  stage ('deploy image to DEV') {
     openshift.withCluster() {
         openshift.withProject() {  
             openshiftDeploy(namespace: 'wildfly-dev', deploymentConfig: 'wildfly-app', verbose: 'true')
         }
     }    
   }
+  
+   stage ('Verify DEV deployment') {
+     openshiftVerifyDeployment namespace: 'wildfly-dev', depCfg: 'wildfly-app', replicaCount: '1', verbose: 'true'
+  }
+
   stage ('Tag Image to TEST') {
             openshiftTag namespace: 'wildfly-dev', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
                  destTag: 'latest', destinationNamespace: 'wildfly-test'    
