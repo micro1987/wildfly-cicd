@@ -1,3 +1,5 @@
+def imageLine = 'docker-registry.default.svc:5000/wildfly-cicd/wildfly-app:latest'
+
 node('slave') {
   stage ('build latest image') {
     openshift.withCluster() {
