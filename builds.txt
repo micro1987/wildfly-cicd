@@ -1,0 +1,10 @@
+pipeline-cicd-38
+wildfly-app-30
+pipeline-cicd-39
+wildfly-app-31
+pipeline-cicd-40
+wildfly-app-32
+pipeline-cicd-41
+wildfly-app-33
+pipeline-cicd-42
+wildfly-app-34
