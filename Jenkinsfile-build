@@ -10,7 +10,7 @@ node('slave') {
   }
   stage('Analyze with Anchore plugin') {
         writeFile file: 'anchore_images', text: imageLine
-        anchore name: 'anchore_images', engineRetries: '15'  
+        anchore name: 'anchore_images', engineRetries: '40'  
   }
   stage ('Tag Image to DEV') {
             openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
