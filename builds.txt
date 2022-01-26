@@ -1,4 +1,4 @@
-pipeline-cicd-49
-wildfly-app-41
-pipeline-cicd-50
-wildfly-app-42
+pipeline-cicd-51
+wildfly-app-43
+pipeline-cicd-52
+wildfly-app-44
