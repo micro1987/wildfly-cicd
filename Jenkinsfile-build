@@ -8,8 +8,12 @@ node('slave') {
         }    
     }     
   }
+  stage('Analyze with Anchore plugin') {
+        writeFile file: 'anchore_images', text: imageLine
+        anchore name: 'anchore_images', engineRetries: '2000' 
+  }
   stage ('Tag Image to DEV') {
             openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
-		 destTag: 'v2', destinationNamespace: 'wildfly-cicd'       
+		 destTag: 'latest', destinationNamespace: 'wildfly-dev'       
   }  
 }
