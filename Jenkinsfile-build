@@ -10,6 +10,6 @@ node('slave') {
   }
   stage ('Tag Image to DEV') {
             openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'wildfly-app',
-		 destTag: 'v2', destinationNamespace: 'wildfly-cicd'       
+		 destTag: 'v3', destinationNamespace: 'wildfly-cicd'       
   }  
 }
