@@ -14,7 +14,7 @@ node('slave') {
  // }
 
   stage ('Tag Image to EXTERNAL GITLAB REGISTRY') {
-            openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'docker.io/microchip1987/wildfly9.0',
+            openshiftTag namespace: 'wildfly-cicd', srcStream: 'wildfly-app', srcTag: 'latest', destStream: 'gitlab-registry',
                  destTag: 'jenkins', destinationNamespace: 'wildfly-cicd'
   }
 
